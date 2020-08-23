@@ -6,6 +6,7 @@ revised: 8/22/2020
 """
 
 import os
+import subprocess
 
 
 def create_dir(path, dir_name):
@@ -20,9 +21,7 @@ def create_dir(path, dir_name):
 
 def create_virtual_env():
     print("creating venv")
-    venv_string = 'python3 -m venv venv'
-    os.system(venv_string)
-    os.system('clear')
+    venv = subprocess.call(['py', '-m', 'venv', 'venv'])
     print('finished venv')
 
 
@@ -36,6 +35,9 @@ def main():
         create_dir(path, '')
         for d in dir_list:
             create_dir(path, d)
+        os.chdir(path)
+        create_virtual_env()
+        
 
 
 if __name__ == "__main__":
